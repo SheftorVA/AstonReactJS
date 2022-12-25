@@ -1,10 +1,14 @@
 import React from "react";
+import classes from "./MyButton.module.css"
 
 class MyButton extends React.Component {
+    constructor(props){
+        super(props)
+    }
     render () {
         return (
             <div>
-                <button className="mybutton">Добавить текст</button>
+                <button className={classes.mybutton}>{this.props.buttonText}</button>
             </div>
         )
     }

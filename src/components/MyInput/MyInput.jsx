@@ -53,9 +53,9 @@ class MyInput extends React.Component {
               <form onSubmit={this.inputSubmit}>
                 <label>
                   Текст:
+                </label>  
                   <input type="text" value={this.state.text} onChange={this.inputChange} />
-                </label>
-                <input type="submit" value="Показать текст в окне"></input>
+                <MyButton buttonText={'ТЕКСТ'}/>
               </form>
             </div>
           </div>  
