@@ -8,7 +8,13 @@ class MyButton extends React.Component {
     render () {
         return (
             <div>
-                <button className={classes.mybutton}>{this.props.buttonText}</button>
+                <button className={classes.mybutton} 
+                    disabled={this.props.disabled} 
+                    type={this.props.type}
+                    onClick={this.props.onClick}
+                >
+                    {this.props.buttonText}
+                </button>
             </div>
         )
     }

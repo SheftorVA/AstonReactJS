@@ -5,9 +5,11 @@ class MyInput extends React.Component {
     constructor (props) {
       super(props)
       this.state = {text: 'Введите текст'}
+      this.inputText = React.createRef()
     
-      this.inputChange = this.inputChange.bind(this)
+      //this.inputChange = this.inputChange.bind(this)
       this.inputSubmit = this.inputSubmit.bind(this)
+      this.disabled = false
     
     }
     componentWillMount() {
@@ -22,9 +24,12 @@ class MyInput extends React.Component {
       console.log('--componentWillUnmount--')
     }
 
-    inputChange(event) {
-      this.setState({text: event.target.value})
-    }
+    // inputChange(event) {
+    //   this.setState({text: event.target.value})
+    //   // if (this.inputText.current.value === 'реакт'){
+    //   //   alert('условие для дизэйбла')
+    //   }
+    // }
 
     inputSubmit(event){
       console.log('submit')
@@ -39,6 +44,7 @@ class MyInput extends React.Component {
 
     componentWillUpdate(nextProps, nextState) {
       console.log('componentWillupdate');
+      console.log(this.inputText.current.value)
     }
    
     componentDidUpdate(prevProps, prevState) {
@@ -54,8 +60,20 @@ class MyInput extends React.Component {
                 <label>
                   Текст:
                 </label>  
-                  <input type="text" value={this.state.text} onChange={this.inputChange} />
-                <MyButton buttonText={'ТЕКСТ'}/>
+                  <input ref={this.inputText} type="text" value={this.state.text} onChange={(event) => {
+                    this.setState({text: event.target.value})
+
+                    this.inputText.current.value === 'реакт' 
+                    ? this.disabled = true 
+                    : this.disabled = false
+                    }
+                  } 
+                />
+              <MyButton buttonText={`Disabled: ${this.disabled}`} disabled={this.disabled}/>
+              <MyButton buttonText={'Установить фокус в инпут'}  onClick={(event) =>{
+                event.preventDefault()
+                this.inputText.current.focus();
+              }}/>
               </form>
             </div>
           </div>  
